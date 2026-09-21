@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Real-Estate Data Automation: Technical Terms</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<style>
+:root{
+  --bg:#F4F6F1; --surface:#FFFFFF; --ink:#1E2A2D; --muted:#586769; --line:#D8DFD5;
+  --accent:#1B6A88; --accent-soft:#E1EDF2;
+  --ex:#2A7259; --ex-bg:#E7F1EB;
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#131819; --surface:#1A2123; --ink:#E5ECEA; --muted:#9DAEB0; --line:#2C3739;
+    --accent:#72BAD5; --accent-soft:#1D2D33;
+    --ex:#6FC3A4; --ex-bg:#1B2A25;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131819; --surface:#1A2123; --ink:#E5ECEA; --muted:#9DAEB0; --line:#2C3739;
+  --accent:#72BAD5; --accent-soft:#1D2D33;
+  --ex:#6FC3A4; --ex-bg:#1B2A25;
+  color-scheme: dark;
+}
+
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 1rem)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:1rem;line-height:1.5;-webkit-text-size-adjust:100%}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.skip{position:absolute;left:-9999px;top:0;background:var(--surface);color:var(--ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:1rem;top:1rem}
+
+/* ---------- Hero ---------- */
+.hero{max-width:1120px;margin:0 auto;padding:4rem 1.5rem 2.5rem}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.4rem,6.5vw,4.25rem);line-height:1.05;letter-spacing:-.02em;margin:0 0 .35rem;max-width:16ch}
+.hero .sub{font-family:var(--serif);font-size:clamp(1.25rem,3vw,1.6rem);color:var(--muted);margin:0 0 1.6rem;font-style:italic}
+.hero .lead{font-size:1.05rem;max-width:56ch;margin:0 0 2rem;color:var(--ink)}
+.chain{display:flex;align-items:center;max-width:560px;margin:0 0 .6rem}
+.chain .node{font-size:.9rem;font-weight:500;padding:.4rem .8rem;border:1.5px solid var(--accent);border-radius:8px;background:var(--surface);white-space:nowrap}
+.chain .link{flex:1 1 14px;min-width:12px;height:1.5px;background:var(--accent)}
+.chain-note{font-size:.88rem;color:var(--muted);margin:0 0 1.4rem}
+.counts{font-size:.92rem;color:var(--muted);margin:0}
+
+/* ---------- Layout ---------- */
+.layout{max-width:1120px;margin:0 auto;padding:0 1.5rem 5rem;display:grid;grid-template-columns:240px minmax(0,1fr);gap:3.5rem;border-top:1px solid var(--line);padding-top:2.5rem}
+
+/* ---------- Contents ---------- */
+.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1.5rem);align-self:start;max-height:calc(100vh - 3rem);overflow:auto;padding-right:.25rem}
+.toc summary{display:none;cursor:pointer;font-weight:600;padding:.7rem .9rem;border:1px solid var(--line);border-radius:8px;background:var(--surface);list-style:none}
+.toc summary::-webkit-details-marker{display:none}
+.toc h2{font-family:var(--sans);font-size:.95rem;font-weight:600;margin:0 0 .6rem;color:var(--muted)}
+.toc ul{list-style:none;margin:0;padding:0}
+.toc li[hidden]{display:none}
+.toc a{display:flex;align-items:baseline;gap:.6rem;padding:.4rem .6rem;border-left:2px solid transparent;color:var(--muted);text-decoration:none;font-size:.92rem;line-height:1.35;border-radius:0 6px 6px 0}
+.toc a:hover{color:var(--ink);background:var(--accent-soft)}
+.toc a[aria-current="true"]{color:var(--ink);border-left-color:var(--accent);background:var(--accent-soft);font-weight:500}
+.toc .tn{flex:0 0 1.3rem;font-variant-numeric:tabular-nums;color:var(--accent);font-weight:600}
+.toc .tt{flex:1}
+
+.pill{display:inline-block;font-size:.72rem;font-weight:500;line-height:1;padding:.2rem .5rem;border:1px solid var(--accent);color:var(--accent);border-radius:999px;white-space:nowrap}
+
+/* ---------- Search ---------- */
+.search{margin:0 0 2.5rem}
+.search label{display:block;font-weight:600;font-size:.95rem;margin-bottom:.45rem}
+.search input{width:100%;font:inherit;font-size:1rem;padding:.8rem 1rem;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:10px}
+.search input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+.search .status{font-size:.88rem;color:var(--muted);margin:.5rem 0 0;min-height:1.3em}
+
+/* ---------- Sections and terms ---------- */
+.sec{margin:0 0 4rem}
+.sec[hidden]{display:none}
+.sec-head{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap}
+.secnum{font-family:var(--serif);font-size:2.2rem;line-height:1;color:var(--accent);font-weight:500;font-variant-numeric:tabular-nums}
+.sec h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.55rem,3.6vw,2.1rem);line-height:1.15;letter-spacing:-.01em;margin:0}
+.sec-desc{margin:.5rem 0 1.2rem;color:var(--muted);font-size:1rem}
+
+.terms{margin:0;border-bottom:1px solid var(--line)}
+.term{display:grid;grid-template-columns:220px minmax(0,1fr);column-gap:2rem;padding:1.15rem 0;border-top:1px solid var(--line)}
+.term[hidden]{display:none}
+.term dt{grid-row:1 / span 2;font-weight:600;font-size:1rem;line-height:1.35;padding-top:.15rem}
+.term dd{margin:0}
+.meaning{font-family:var(--serif);font-size:1.15rem;line-height:1.5;max-width:60ch}
+.example{margin-top:.65rem;padding:.55rem .85rem;border-left:3px solid var(--ex);background:var(--ex-bg);border-radius:0 8px 8px 0;font-size:.95rem;line-height:1.45;max-width:60ch;overflow-wrap:anywhere}
+.ex-label{font-weight:600;color:var(--ex);margin-right:.35rem}
+
+.empty{font-family:var(--serif);font-size:1.2rem;color:var(--muted);padding:2rem 0}
+.empty[hidden]{display:none}
+
+/* ---------- Small screens ---------- */
+@media (max-width:899px){
+  .layout{grid-template-columns:minmax(0,1fr);gap:1.5rem}
+  .toc{position:static;max-height:none;overflow:visible}
+  .toc summary{display:block}
+  .toc summary::after{content:"Show";float:right;color:var(--accent);font-weight:500}
+  .toc details[open] summary::after{content:"Hide"}
+  .toc h2{display:none}
+  .toc ul{margin-top:.5rem}
+  .search{margin-bottom:2rem}
+}
+@media (max-width:640px){
+  .hero{padding-top:2.5rem}
+  .term{grid-template-columns:minmax(0,1fr);row-gap:.35rem}
+  .term dt{grid-row:auto;padding-top:0}
+  .meaning{font-size:1.1rem}
+  .example{margin-top:.4rem}
+  .secnum{font-size:1.8rem}
+}
+
+@media print{
+  .toc,.search,.skip{display:none}
+  .layout{display:block;border:0}
+  body{background:#fff;color:#000}
+  .sec{break-inside:avoid-page}
+  .term{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to terms</a>
+
+<header class="hero">
+  <h1>Real-Estate Data Automation</h1>
+  <p class="sub">Technical terms</p>
+  <p class="lead">A plain-language glossary for the land-record automation project. Every term has a simple meaning and an example from the Master Sheet and Mouza Sheet workflow.</p>
+  <div class="chain" role="img" aria-label="Data structure: Project, then Mouza, then File, then Land Record">
+    <span class="node">Project</span><span class="link"></span>
+    <span class="node">Mouza</span><span class="link"></span>
+    <span class="node">File</span><span class="link"></span>
+    <span class="node">Land Record</span>
+  </div>
+  <p class="chain-note">How the records nest. Most examples below refer back to this structure.</p>
+  <p class="counts">101 terms in 14 groups. Groups 1 to 10 are your original list; groups 11 to 14 are additions, marked <span class="pill">Added</span></p>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Sections">
+    <details open>
+      <summary>Jump to a group</summary>
+      <h2>Groups</h2>
+      <ul>
+<li><a href="#s1" data-sec="s1"><span class="tn">1</span><span class="tt">Data Structure &amp; Modeling</span></a></li>
+<li><a href="#s2" data-sec="s2"><span class="tn">2</span><span class="tt">ETL &amp; Data Processing</span></a></li>
+<li><a href="#s3" data-sec="s3"><span class="tn">3</span><span class="tt">Data Quality</span></a></li>
+<li><a href="#s4" data-sec="s4"><span class="tn">4</span><span class="tt">Automation &amp; Synchronization</span></a></li>
+<li><a href="#s5" data-sec="s5"><span class="tn">5</span><span class="tt">Error &amp; Exception Management</span></a></li>
+<li><a href="#s6" data-sec="s6"><span class="tn">6</span><span class="tt">Google Apps Script / System Limitations</span></a></li>
+<li><a href="#s7" data-sec="s7"><span class="tn">7</span><span class="tt">Multi-User &amp; Data Conflict</span></a></li>
+<li><a href="#s8" data-sec="s8"><span class="tn">8</span><span class="tt">Testing &amp; Quality Assurance</span></a></li>
+<li><a href="#s9" data-sec="s9"><span class="tn">9</span><span class="tt">Monitoring &amp; Audit</span></a></li>
+<li><a href="#s10" data-sec="s10"><span class="tn">10</span><span class="tt">Architecture &amp; Maintainability</span></a></li>
+<li><a href="#s11" data-sec="s11"><span class="tn">11</span><span class="tt">Security &amp; Access Control</span><span class="pill">Added</span></a></li>
+<li><a href="#s12" data-sec="s12"><span class="tn">12</span><span class="tt">Deployment &amp; Operations</span><span class="pill">Added</span></a></li>
+<li><a href="#s13" data-sec="s13"><span class="tn">13</span><span class="tt">Data Entry &amp; User Interface</span><span class="pill">Added</span></a></li>
+<li><a href="#s14" data-sec="s14"><span class="tn">14</span><span class="tt">Reporting &amp; Reconciliation</span><span class="pill">Added</span></a></li>
+      </ul>
+    </details>
+  </nav>
+
+  <main id="main">
+    <div class="search">
+      <label for="q">Search terms</label>
+      <input id="q" type="search" placeholder="Try “idempotency”, “Mouza”, or “log”" autocomplete="off">
+      <p class="status" id="status" aria-live="polite"></p>
+    </div>
+
+<section id="s1" class="sec" aria-labelledby="h1">
+<div class="sec-head"><span class="secnum" aria-hidden="true">1</span><h2 id="h1">Data Structure &amp; Modeling</h2></div>
+<p class="sec-desc">How data is organized and connected.</p>
+<dl class="terms">
+<div class="term"><dt>Data Modeling</dt><dd class="meaning">Designing how data should be organized and related</dd><dd class="example"><span class="ex-label">Your example</span> Project → Mouza → File → Land Record</dd></div>
+<div class="term"><dt>Data Schema</dt><dd class="meaning">Definition of columns, data types, and structure</dd><dd class="example"><span class="ex-label">Your example</span> File No, Mouza, Khatian, Dag, Deed Date</dd></div>
+<div class="term"><dt>Data Mapping</dt><dd class="meaning">Connecting source fields to destination fields</dd><dd class="example"><span class="ex-label">Your example</span> Master Mouza → Mouza Sheet Mouza Name</dd></div>
+<div class="term"><dt>Data Transformation</dt><dd class="meaning">Changing data into the required structure</dd><dd class="example"><span class="ex-label">Your example</span> Combining/splitting columns, changing formats</dd></div>
+<div class="term"><dt>Data Restructuring</dt><dd class="meaning">Rearranging data for another system/workflow</dd><dd class="example"><span class="ex-label">Your example</span> Master dataset → Mouza-wise datasets</dd></div>
+<div class="term"><dt>Data Normalization</dt><dd class="meaning">Making inconsistent values consistent</dd><dd class="example"><span class="ex-label">Your example</span> Sonargaon, sonargaon, SONARGAON → one format</dd></div>
+</dl>
+</section>
+<section id="s2" class="sec" aria-labelledby="h2">
+<div class="sec-head"><span class="secnum" aria-hidden="true">2</span><h2 id="h2">ETL &amp; Data Processing</h2></div>
+<p class="sec-desc">Getting data out, reshaping it, and delivering it.</p>
+<dl class="terms">
+<div class="term"><dt>ETL</dt><dd class="meaning">Extract → Transform → Load</dd><dd class="example"><span class="ex-label">Your example</span> Master → Clean → Mouza Sheets</dd></div>
+<div class="term"><dt>Data Extraction</dt><dd class="meaning">Getting data from a source</dd><dd class="example"><span class="ex-label">Your example</span> Reading Master Sheet</dd></div>
+<div class="term"><dt>Data Cleaning</dt><dd class="meaning">Finding and fixing bad data</dd><dd class="example"><span class="ex-label">Your example</span> Removing unwanted spaces/incorrect values</dd></div>
+<div class="term"><dt>Data Validation</dt><dd class="meaning">Checking whether data is acceptable</dd><dd class="example"><span class="ex-label">Your example</span> Valid Mouza? Valid File No?</dd></div>
+<div class="term"><dt>Data Enrichment</dt><dd class="meaning">Adding useful information to existing data</dd><dd class="example"><span class="ex-label">Your example</span> Adding Project/Mouza classification</dd></div>
+<div class="term"><dt>Data Filtering</dt><dd class="meaning">Selecting only relevant records</dd><dd class="example"><span class="ex-label">Your example</span> Select records belonging to Mouza A</dd></div>
+<div class="term"><dt>Data Aggregation</dt><dd class="meaning">Combining data into summaries</dd><dd class="example"><span class="ex-label">Your example</span> Total land by Mouza</dd></div>
+<div class="term"><dt>Data Partitioning</dt><dd class="meaning">Dividing one dataset into logical groups</dd><dd class="example"><span class="ex-label">Your example</span> Master → 25 Mouza datasets</dd></div>
+</dl>
+</section>
+<section id="s3" class="sec" aria-labelledby="h3">
+<div class="sec-head"><span class="secnum" aria-hidden="true">3</span><h2 id="h3">Data Quality</h2></div>
+<p class="sec-desc">Checking that data is correct, complete and consistent.</p>
+<dl class="terms">
+<div class="term"><dt>Duplicate Detection</dt><dd class="meaning">Finding repeated records</dd><dd class="example"><span class="ex-label">Your example</span> Same deed/file appearing twice</dd></div>
+<div class="term"><dt>Data Integrity</dt><dd class="meaning">Keeping data correct and consistent</dd><dd class="example"><span class="ex-label">Your example</span> Master and destination shouldn't contradict</dd></div>
+<div class="term"><dt>Data Consistency</dt><dd class="meaning">Same information follows the same rules</dd><dd class="example"><span class="ex-label">Your example</span> Same Mouza spelling everywhere</dd></div>
+<div class="term"><dt>Data Completeness</dt><dd class="meaning">Checking required information isn't missing</dd><dd class="example"><span class="ex-label">Your example</span> Missing File No / Mouza</dd></div>
+<div class="term"><dt>Data Accuracy</dt><dd class="meaning">Checking whether information is correct</dd><dd class="example"><span class="ex-label">Your example</span> Wrong Khatian/Dag number</dd></div>
+<div class="term"><dt>Data Quality Check</dt><dd class="meaning">Overall examination of dataset quality</dd><dd class="example"><span class="ex-label">Your example</span> Pre-distribution validation</dd></div>
+</dl>
+</section>
+<section id="s4" class="sec" aria-labelledby="h4">
+<div class="sec-head"><span class="secnum" aria-hidden="true">4</span><h2 id="h4">Automation &amp; Synchronization</h2></div>
+<p class="sec-desc">Running the process by itself and keeping datasets aligned.</p>
+<dl class="terms">
+<div class="term"><dt>Automation</dt><dd class="meaning">Making a process run automatically</dd><dd class="example"><span class="ex-label">Your example</span> Button → distribute data</dd></div>
+<div class="term"><dt>Data Distribution</dt><dd class="meaning">Sending records to appropriate destinations</dd><dd class="example"><span class="ex-label">Your example</span> Master → Mouza Sheets</dd></div>
+<div class="term"><dt>Synchronization</dt><dd class="meaning">Keeping multiple datasets aligned</dd><dd class="example"><span class="ex-label">Your example</span> Master and Mouza files stay updated</dd></div>
+<div class="term"><dt>Incremental Synchronization</dt><dd class="meaning">Processing only changed/new records</dd><dd class="example"><span class="ex-label">Your example</span> Don't redistribute 10,000 unchanged rows</dd></div>
+<div class="term"><dt>Idempotency</dt><dd class="meaning">Running the same process again doesn't create damage/duplicates</dd><dd class="example"><span class="ex-label">Your example</span> Run distribution twice → same final result</dd></div>
+<div class="term"><dt>Batch Processing</dt><dd class="meaning">Processing many records together</dd><dd class="example"><span class="ex-label">Your example</span> Write 1,000 rows at once</dd></div>
+<div class="term"><dt>Workflow Automation</dt><dd class="meaning">Automating several connected steps</dd><dd class="example"><span class="ex-label">Your example</span> Validate → transform → distribute → log</dd></div>
+</dl>
+</section>
+<section id="s5" class="sec" aria-labelledby="h5">
+<div class="sec-head"><span class="secnum" aria-hidden="true">5</span><h2 id="h5">Error &amp; Exception Management</h2></div>
+<p class="sec-desc">Handling problems without damaging existing data.</p>
+<dl class="terms">
+<div class="term"><dt>Exception Handling</dt><dd class="meaning">Managing unexpected problems</dd><dd class="example"><span class="ex-label">Your example</span> Unknown Mouza shouldn't crash everything</dd></div>
+<div class="term"><dt>Error Handling</dt><dd class="meaning">Detecting and responding to errors</dd><dd class="example"><span class="ex-label">Your example</span> Script fails → record error</dd></div>
+<div class="term"><dt>Error Logging</dt><dd class="meaning">Recording what went wrong</dd><dd class="example"><span class="ex-label">Your example</span> Mouza missing — Row 1523</dd></div>
+<div class="term"><dt>Exception Queue</dt><dd class="meaning">Keeping problematic records aside</dd><dd class="example"><span class="ex-label">Your example</span> Invalid records go to an Exception Sheet</dd></div>
+<div class="term"><dt>Recovery</dt><dd class="meaning">Continuing/restarting after failure</dd><dd class="example"><span class="ex-label">Your example</span> Resume after script interruption</dd></div>
+<div class="term"><dt>Retry Mechanism</dt><dd class="meaning">Automatically trying a failed operation again</dd><dd class="example"><span class="ex-label">Your example</span> Destination write fails → retry</dd></div>
+<div class="term"><dt>Fail-safe</dt><dd class="meaning">Preventing errors from damaging existing data</dd><dd class="example"><span class="ex-label">Your example</span> Don't overwrite destination until validation passes</dd></div>
+</dl>
+</section>
+<section id="s6" class="sec" aria-labelledby="h6">
+<div class="sec-head"><span class="secnum" aria-hidden="true">6</span><h2 id="h6">Google Apps Script / System Limitations</h2></div>
+<p class="sec-desc">The limits of the platform the automation runs on.</p>
+<dl class="terms">
+<div class="term"><dt>API Limitation</dt><dd class="meaning">External service has usage restrictions</dd><dd class="example"><span class="ex-label">Your example</span> Google services have quotas</dd></div>
+<div class="term"><dt>Execution Time Limit</dt><dd class="meaning">Script cannot run forever</dd><dd class="example"><span class="ex-label">Your example</span> Large distribution may exceed runtime</dd></div>
+<div class="term"><dt>Service Quota</dt><dd class="meaning">Limited number of operations allowed</dd><dd class="example"><span class="ex-label">Your example</span> Spreadsheet/Drive service limits</dd></div>
+<div class="term"><dt>API Calls</dt><dd class="meaning">Requests made to Google services</dd><dd class="example"><span class="ex-label">Your example</span> getValues(), setValues() etc.</dd></div>
+<div class="term"><dt>Batch Operation</dt><dd class="meaning">Performing one large operation instead of many small ones</dd><dd class="example"><span class="ex-label">Your example</span> One setValues() instead of 1,000 writes</dd></div>
+<div class="term"><dt>Performance Optimization</dt><dd class="meaning">Making automation faster and more efficient</dd><dd class="example"><span class="ex-label">Your example</span> Reduce Spreadsheet service calls</dd></div>
+<div class="term"><dt>Scalability</dt><dd class="meaning">Ability to handle increasing data volume</dd><dd class="example"><span class="ex-label">Your example</span> 5,000 → 50,000 records</dd></div>
+<div class="term"><dt>Resource Management</dt><dd class="meaning">Efficient use of available system resources</dd><dd class="example"><span class="ex-label">Your example</span> Memory, execution time, API calls</dd></div>
+</dl>
+</section>
+<section id="s7" class="sec" aria-labelledby="h7">
+<div class="sec-head"><span class="secnum" aria-hidden="true">7</span><h2 id="h7">Multi-User &amp; Data Conflict</h2></div>
+<p class="sec-desc">What happens when people and scripts work at the same time.</p>
+<dl class="terms">
+<div class="term"><dt>Concurrent Editing</dt><dd class="meaning">Multiple people editing simultaneously</dd><dd class="example"><span class="ex-label">Your example</span> Employee edits while script runs</dd></div>
+<div class="term"><dt>Race Condition</dt><dd class="meaning">Two operations interfere because they happen together</dd><dd class="example"><span class="ex-label">Your example</span> User update vs automation update</dd></div>
+<div class="term"><dt>Data Conflict</dt><dd class="meaning">Two different changes affect the same record</dd><dd class="example"><span class="ex-label">Your example</span> User changes row while script updates it</dd></div>
+<div class="term"><dt>Locking / Lock Service</dt><dd class="meaning">Temporarily preventing conflicting operations</dd><dd class="example"><span class="ex-label">Your example</span> Prevent two scripts running together</dd></div>
+<div class="term"><dt>Transaction-like Processing</dt><dd class="meaning">Treating related operations as one controlled process</dd><dd class="example"><span class="ex-label">Your example</span> Distribution shouldn't leave half-updated data</dd></div>
+</dl>
+</section>
+<section id="s8" class="sec" aria-labelledby="h8">
+<div class="sec-head"><span class="secnum" aria-hidden="true">8</span><h2 id="h8">Testing &amp; Quality Assurance</h2></div>
+<p class="sec-desc">Proving the system works before people rely on it.</p>
+<dl class="terms">
+<div class="term"><dt>Testing</dt><dd class="meaning">Checking whether the system works</dd><dd class="example"><span class="ex-label">Your example</span> Test distribution</dd></div>
+<div class="term"><dt>Unit Testing</dt><dd class="meaning">Testing one function/component</dd><dd class="example"><span class="ex-label">Your example</span> Test normalizeMouzaName()</dd></div>
+<div class="term"><dt>Integration Testing</dt><dd class="meaning">Testing multiple components together</dd><dd class="example"><span class="ex-label">Your example</span> Master → validation → destination</dd></div>
+<div class="term"><dt>Regression Testing</dt><dd class="meaning">Checking that new changes didn't break old functionality</dd><dd class="example"><span class="ex-label">Your example</span> New script update doesn't break Mouza files</dd></div>
+<div class="term"><dt>Edge Case Testing</dt><dd class="meaning">Testing unusual situations</dd><dd class="example"><span class="ex-label">Your example</span> Blank Mouza, huge dataset, duplicate file</dd></div>
+<div class="term"><dt>Test Dataset</dt><dd class="meaning">Controlled data used for testing</dd><dd class="example"><span class="ex-label">Your example</span> 100 fake/test records</dd></div>
+<div class="term"><dt>User Acceptance Testing (UAT)</dt><dd class="meaning">Real users verify the system works for business needs</dd><dd class="example"><span class="ex-label">Your example</span> Office staff test the workflow</dd></div>
+<div class="term"><dt>Quality Assurance (QA)</dt><dd class="meaning">Overall process of ensuring quality</dd><dd class="example"><span class="ex-label">Your example</span> Validation + testing + review</dd></div>
+</dl>
+</section>
+<section id="s9" class="sec" aria-labelledby="h9">
+<div class="sec-head"><span class="secnum" aria-hidden="true">9</span><h2 id="h9">Monitoring &amp; Audit</h2></div>
+<p class="sec-desc">Recording what the system did and following each record.</p>
+<dl class="terms">
+<div class="term"><dt>Audit Logging</dt><dd class="meaning">Recording what the system did</dd><dd class="example"><span class="ex-label">Your example</span> Which records were distributed</dd></div>
+<div class="term"><dt>Execution Log</dt><dd class="meaning">Recording each automation run</dd><dd class="example"><span class="ex-label">Your example</span> Start/end time, status, records</dd></div>
+<div class="term"><dt>Change Tracking</dt><dd class="meaning">Recording what changed</dd><dd class="example"><span class="ex-label">Your example</span> Old Mouza → new Mouza</dd></div>
+<div class="term"><dt>Monitoring</dt><dd class="meaning">Watching system behavior</dd><dd class="example"><span class="ex-label">Your example</span> Did today's automation succeed?</dd></div>
+<div class="term"><dt>Execution Summary</dt><dd class="meaning">Final result of a run</dd><dd class="example"><span class="ex-label">Your example</span> 4,532 processed, 21 errors</dd></div>
+<div class="term"><dt>Traceability</dt><dd class="meaning">Being able to track a record through the system</dd><dd class="example"><span class="ex-label">Your example</span> Master row → destination row</dd></div>
+<div class="term"><dt>Data Lineage</dt><dd class="meaning">Tracking where data came from and where it went</dd><dd class="example"><span class="ex-label">Your example</span> Source → transformation → destination</dd></div>
+</dl>
+</section>
+<section id="s10" class="sec" aria-labelledby="h10">
+<div class="sec-head"><span class="secnum" aria-hidden="true">10</span><h2 id="h10">Architecture &amp; Maintainability</h2></div>
+<p class="sec-desc">Designing the system so it stays easy to change.</p>
+<dl class="terms">
+<div class="term"><dt>System Architecture</dt><dd class="meaning">Overall design of the automation system</dd><dd class="example"><span class="ex-label">Your example</span> Master + config + engine + logs</dd></div>
+<div class="term"><dt>Modular Design</dt><dd class="meaning">Breaking code into independent functions</dd><dd class="example"><span class="ex-label">Your example</span> validate(), transform(), distribute()</dd></div>
+<div class="term"><dt>Separation of Concerns</dt><dd class="meaning">Each component has one responsibility</dd><dd class="example"><span class="ex-label">Your example</span> Validation shouldn't handle distribution</dd></div>
+<div class="term"><dt>Configuration-driven System</dt><dd class="meaning">Rules stored in configuration instead of code</dd><dd class="example"><span class="ex-label">Your example</span> Mouza mapping stored in CONFIG</dd></div>
+<div class="term"><dt>Reusability</dt><dd class="meaning">Same code can work for multiple projects</dd><dd class="example"><span class="ex-label">Your example</span> One engine → four projects</dd></div>
+<div class="term"><dt>Maintainability</dt><dd class="meaning">How easily the system can be modified</dd><dd class="example"><span class="ex-label">Your example</span> Add Mouza without rewriting everything</dd></div>
+<div class="term"><dt>Documentation</dt><dd class="meaning">Explaining how the system works</dd><dd class="example"><span class="ex-label">Your example</span> Architecture + setup guide</dd></div>
+<div class="term"><dt>Version Control</dt><dd class="meaning">Tracking code changes over time</dd><dd class="example"><span class="ex-label">Your example</span> Git/GitHub</dd></div>
+<div class="term"><dt>Change Management</dt><dd class="meaning">Controlling system modifications</dd><dd class="example"><span class="ex-label">Your example</span> Record why a rule changed</dd></div>
+</dl>
+</section>
+<section id="s11" class="sec" aria-labelledby="h11">
+<div class="sec-head"><span class="secnum" aria-hidden="true">11</span><h2 id="h11">Security &amp; Access Control</h2><span class="pill">Added</span></div>
+<p class="sec-desc">Deciding who can see and change what, and keeping data safe.</p>
+<dl class="terms">
+<div class="term"><dt>Access Control</dt><dd class="meaning">Deciding who can view or change data</dd><dd class="example"><span class="ex-label">Your example</span> Only the data team can edit the Master Sheet</dd></div>
+<div class="term"><dt>Permissions</dt><dd class="meaning">The specific actions a person is allowed to take</dd><dd class="example"><span class="ex-label">Your example</span> Staff can view Mouza Sheets; only admins run distribution</dd></div>
+<div class="term"><dt>Role-based Access</dt><dd class="meaning">Giving permissions according to job role</dd><dd class="example"><span class="ex-label">Your example</span> Data Entry, Reviewer, Admin</dd></div>
+<div class="term"><dt>Protected Range</dt><dd class="meaning">A part of a sheet locked against accidental edits</dd><dd class="example"><span class="ex-label">Your example</span> Header row and formula columns locked</dd></div>
+<div class="term"><dt>Data Privacy</dt><dd class="meaning">Keeping sensitive information from people who shouldn't see it</dd><dd class="example"><span class="ex-label">Your example</span> Owner and deed details visible only to authorized staff</dd></div>
+<div class="term"><dt>Backup</dt><dd class="meaning">A saved copy of data to restore if something goes wrong</dd><dd class="example"><span class="ex-label">Your example</span> Copy the Master Sheet before every distribution</dd></div>
+<div class="term"><dt>Data Retention</dt><dd class="meaning">How long records and logs are kept</dd><dd class="example"><span class="ex-label">Your example</span> Keep execution logs for a fixed period, then archive</dd></div>
+</dl>
+</section>
+<section id="s12" class="sec" aria-labelledby="h12">
+<div class="sec-head"><span class="secnum" aria-hidden="true">12</span><h2 id="h12">Deployment &amp; Operations</h2><span class="pill">Added</span></div>
+<p class="sec-desc">Releasing changes safely and running the system day to day.</p>
+<dl class="terms">
+<div class="term"><dt>Trigger</dt><dd class="meaning">An event that starts a script automatically</dd><dd class="example"><span class="ex-label">Your example</span> Run when a sheet is edited or a form is submitted</dd></div>
+<div class="term"><dt>Time-driven Trigger</dt><dd class="meaning">A trigger that runs on a schedule</dd><dd class="example"><span class="ex-label">Your example</span> Distribute new records every night</dd></div>
+<div class="term"><dt>Manual Run</dt><dd class="meaning">Starting an automation by hand</dd><dd class="example"><span class="ex-label">Your example</span> Staff click the Distribute button</dd></div>
+<div class="term"><dt>Environment</dt><dd class="meaning">A separate copy of the system used for a specific purpose</dd><dd class="example"><span class="ex-label">Your example</span> Test copy vs live copy</dd></div>
+<div class="term"><dt>Test Environment</dt><dd class="meaning">A safe copy where changes can be tried before going live</dd><dd class="example"><span class="ex-label">Your example</span> Try the new script on a copy of the Master</dd></div>
+<div class="term"><dt>Production</dt><dd class="meaning">The live system used for real work</dd><dd class="example"><span class="ex-label">Your example</span> The real Master and Mouza files</dd></div>
+<div class="term"><dt>Deployment</dt><dd class="meaning">Releasing a new or updated script for use</dd><dd class="example"><span class="ex-label">Your example</span> Publishing version 2 of the distribution script</dd></div>
+<div class="term"><dt>Rollback</dt><dd class="meaning">Returning to the previous working version</dd><dd class="example"><span class="ex-label">Your example</span> Restore version 1 if version 2 has a bug</dd></div>
+<div class="term"><dt>Changelog</dt><dd class="meaning">A short record of what changed in each version</dd><dd class="example"><span class="ex-label">Your example</span> v1.3: added Mouza spelling check</dd></div>
+</dl>
+</section>
+<section id="s13" class="sec" aria-labelledby="h13">
+<div class="sec-head"><span class="secnum" aria-hidden="true">13</span><h2 id="h13">Data Entry &amp; User Interface</h2><span class="pill">Added</span></div>
+<p class="sec-desc">How staff put data in and interact with the sheets.</p>
+<dl class="terms">
+<div class="term"><dt>Data Entry</dt><dd class="meaning">Typing or pasting records into the system</dd><dd class="example"><span class="ex-label">Your example</span> Staff add new deed records to the Master Sheet</dd></div>
+<div class="term"><dt>Data Validation Rule</dt><dd class="meaning">A spreadsheet rule limiting what can be entered</dd><dd class="example"><span class="ex-label">Your example</span> Mouza column accepts only names from the approved list</dd></div>
+<div class="term"><dt>Dropdown List</dt><dd class="meaning">A fixed list of choices in a cell</dd><dd class="example"><span class="ex-label">Your example</span> Choose Mouza instead of typing it</dd></div>
+<div class="term"><dt>Named Range</dt><dd class="meaning">A label given to a group of cells</dd><dd class="example"><span class="ex-label">Your example</span> MOUZA_LIST points to the CONFIG table</dd></div>
+<div class="term"><dt>Template</dt><dd class="meaning">A ready-made file copied to create new ones</dd><dd class="example"><span class="ex-label">Your example</span> Blank Mouza Sheet with headers already in place</dd></div>
+<div class="term"><dt>Status Column</dt><dd class="meaning">A column showing the progress of each record</dd><dd class="example"><span class="ex-label">Your example</span> Pending, Distributed, Error</dd></div>
+<div class="term"><dt>Custom Menu</dt><dd class="meaning">A menu added to Google Sheets by a script</dd><dd class="example"><span class="ex-label">Your example</span> A Distribution menu with a Run distribution item</dd></div>
+<div class="term"><dt>Dashboard</dt><dd class="meaning">One sheet summarizing the key numbers</dd><dd class="example"><span class="ex-label">Your example</span> Records per Mouza, errors today</dd></div>
+</dl>
+</section>
+<section id="s14" class="sec" aria-labelledby="h14">
+<div class="sec-head"><span class="secnum" aria-hidden="true">14</span><h2 id="h14">Reporting &amp; Reconciliation</h2><span class="pill">Added</span></div>
+<p class="sec-desc">Confirming that the numbers match and summarizing results.</p>
+<dl class="terms">
+<div class="term"><dt>Reconciliation</dt><dd class="meaning">Comparing two datasets to confirm they match</dd><dd class="example"><span class="ex-label">Your example</span> Master row count vs total across all Mouza Sheets</dd></div>
+<div class="term"><dt>Record Count Check</dt><dd class="meaning">Comparing the number of rows before and after a process</dd><dd class="example"><span class="ex-label">Your example</span> 4,532 rows in Master = 4,532 rows distributed</dd></div>
+<div class="term"><dt>Control Total</dt><dd class="meaning">A total used to confirm nothing was lost or changed</dd><dd class="example"><span class="ex-label">Your example</span> Total land area in Master = total in Mouza Sheets</dd></div>
+<div class="term"><dt>Exception Report</dt><dd class="meaning">A summary of records that need attention</dd><dd class="example"><span class="ex-label">Your example</span> List of rows with missing File No</dd></div>
+<div class="term"><dt>Summary Report</dt><dd class="meaning">A short overview of results for a period</dd><dd class="example"><span class="ex-label">Your example</span> Records added per Mouza this month</dd></div>
+<div class="term"><dt>Data Dictionary</dt><dd class="meaning">A document explaining every column and its allowed values</dd><dd class="example"><span class="ex-label">Your example</span> What Khatian and Dag mean, and their accepted formats</dd></div>
+</dl>
+</section>
+
+    <p class="empty" id="empty" hidden>No terms match your search. Try a shorter word or clear the box.</p>
+  </main>
+</div>
+
+<script>
+(function(){
+  var input = document.getElementById('q');
+  var status = document.getElementById('status');
+  var empty = document.getElementById('empty');
+  var terms = Array.prototype.slice.call(document.querySelectorAll('.term'));
+  var secs = Array.prototype.slice.call(document.querySelectorAll('.sec'));
+  var tocItems = Array.prototype.slice.call(document.querySelectorAll('.toc li'));
+  var details = document.querySelector('.toc details');
+  var total = terms.length;
+  var haystacks = terms.map(function(t){ return t.textContent.toLowerCase(); });
+
+  function filter(){
+    var q = input.value.trim().toLowerCase();
+    var shown = 0;
+    terms.forEach(function(t, i){
+      var match = !q || haystacks[i].indexOf(q) !== -1;
+      t.hidden = !match;
+      if (match) shown++;
+    });
+    secs.forEach(function(s, i){
+      var any = s.querySelector('.term:not([hidden])') !== null;
+      s.hidden = !any;
+      tocItems[i].hidden = !any;
+    });
+    empty.hidden = shown !== 0;
+    status.textContent = q ? (shown === 0 ? '' : 'Showing ' + shown + ' of ' + total + ' terms') : '';
+  }
+  input.addEventListener('input', filter);
+
+  /* contents: open on wide screens, collapsed on small ones */
+  var wide = window.matchMedia('(min-width: 900px)');
+  function syncDetails(){ details.open = wide.matches; }
+  syncDetails();
+  if (wide.addEventListener) wide.addEventListener('change', syncDetails);
+  else if (wide.addListener) wide.addListener(syncDetails);
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  links.forEach(function(a){
+    a.addEventListener('click', function(){ if (!wide.matches) details.open = false; });
+  });
+
+  /* highlight the group currently being read */
+  function setActive(id){
+    links.forEach(function(a){
+      if (a.getAttribute('data-sec') === id) a.setAttribute('aria-current','true');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) setActive(e.target.id); });
+    }, { rootMargin: '-15% 0px -75% 0px' });
+    secs.forEach(function(s){ io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
